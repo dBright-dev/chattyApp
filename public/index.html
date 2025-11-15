@@ -647,6 +647,9 @@
                 this.currentRoom = null;
                 this.typingTimeout = null;
                 this.isTyping = false;
+
+                //Use render url
+                this.backendUrl = 'https://chatty-boeq.onrender.com';
                 
                 this.initializeEventListeners();
             }
@@ -672,6 +675,10 @@
             }
             
             connectSocket() {
+                console.log('Connecting to server...', this.backendUrl);
+                this.socket = io(this.backendUrl, {
+                    transports: ['websocket', 'polling']
+                });
                 this.socket = io('http://localhost:5000');
                 
                 this.socket.on('connect', () => {

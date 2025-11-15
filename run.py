@@ -7,18 +7,17 @@ import os
 app = create_app()
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    debug = os.environ.get('FLASK_ENV') == 'development'
+    port = int(os.environ.get('PORT', 10000))
 
     print(f"🚀 Starting Python Chat Application... on port {port}")
-    print(f"📍 Access the app at: http://localhost:{port}  Debug mode is {debug}") 
+    print(f"📍 Access the app at: http://localhost:{port}") 
 
     # Allow all origins for development purposes
     socketio.run(
         app,
-        debug=debug,
         host='0.0.0.0',
         port=port,
+        debug=False,
         allow_unsafe_werkzeug=True
     )
     #print("🚀 Starting Python Chat Application...")

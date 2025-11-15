@@ -6,11 +6,14 @@ socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
+
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-123')
     
     socketio.init_app(
         app, 
-        cors_allowed_origins="*"
+        cors_allowed_origins="*",
+        logger=True,
+        engineio_logger=True
     )
     
     from app.routes import bp
