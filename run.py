@@ -1,5 +1,5 @@
-from dotenv import load_dotenv
-load_dotenv()  # This loads variables from .env file
+# from dotenv import load_dotenv
+# load_dotenv()  # This loads variables from .env file
 
 from app import create_app, socketio
 import os

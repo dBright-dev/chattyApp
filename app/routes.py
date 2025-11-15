@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from flask_socketio import emit, join_room, leave_room
-from . import socketio
+from app import socketio
 import time
 
 bp = Blueprint('main', __name__)
@@ -185,3 +185,14 @@ def handle_typing_stop():
         'username': username,
         'is_typing': False
     }, room=room_id)
+
+    # health check endpoint for deployment testing
+    @bp.route('/health')
+    def health_check():
+        return {
+            'status': 'healthy',
+            'service': 'chattyapp',
+            'timestamp': time.time(),
+            'active_users': len(active_users),
+            'active_rooms': len(rooms)
+        }
